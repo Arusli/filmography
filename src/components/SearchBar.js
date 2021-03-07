@@ -1,29 +1,30 @@
 import React from 'react';
-import Results from './Results';
 
 class SearchBar extends React.Component {
 
-    state = {searchterm: 'actor'};
+    state = {
+        searchterm: 'full name of actor',
+        displayterm: ''
+    };
 
     onInputChange = (event) => {
         this.setState({searchterm: event.target.value});
-        console.log(this.state.searchterm);
     }
 
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.searchterm);
+        this.setState({displayterm: this.state.searchterm.toUpperCase()})
+        this.setState({searchterm: ''});
     }
 
     render() {
         return (
             <div>
-                <h3>Filmography of: {this.state.searchterm}</h3>  
-                {/* onSubmit */}
+                <h3>Filmography of: {this.state.displayterm}</h3>  
                 <form onSubmit={this.onSubmit}> 
-                    <input type="text" onChange={this.onInputChange} />
+                    <input type="text" onChange={this.onInputChange} value={this.state.searchterm} />
                 </form>
-                <Results searchterm={this.state.searchterm} />
             </div>         
         )
     }

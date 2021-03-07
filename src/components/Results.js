@@ -2,9 +2,13 @@ import React from 'react';
 
 class Results extends React.Component {
 
+
     render() {
+        console.log('results', this.props.image);
         return (
-            <div>{this.props.searchterm}</div>
+            <div>
+                <img src={this.props.image} />
+            </div>
 
         )
     }

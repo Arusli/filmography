@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Results from './Results';
 import axios from 'axios';
 
 
@@ -47,7 +48,7 @@ class App extends React.Component {
             }
         })
 
-        console.log(response2.data.cast[0].title, response2.data.cast[0].poster_path);
+        console.log(response2.data.cast[0].title, imageBaseUrlSmall + response2.data.cast[0].poster_path);
 
     } //end onSubmit
 
@@ -57,6 +58,7 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
+                <Results image={this.state.imageUrl} />
             </div>
             
         );
