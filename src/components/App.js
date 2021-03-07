@@ -19,6 +19,7 @@ class App extends React.Component {
         response: null,
         personId: null,
         imageUrl: '',
+        imageUrlSmall: '',
         filmArray: []
     };
 
@@ -40,7 +41,10 @@ class App extends React.Component {
         })
 
         console.log(imageResponse);
-        this.setState({imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path});
+        this.setState({
+            imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
+            imageUrlSmall: imageBaseUrlSmall + imageResponse.data.profiles[0].file_path
+        });
         console.log(this.state.imageUrl);
 
         const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
@@ -62,7 +66,7 @@ class App extends React.Component {
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
                 <Results image={this.state.imageUrl} />
-                <Films filmArray={this.state.filmArray} />
+                <Films filmArray={this.state.filmArray} actorImage={this.state.imageUrlSmall} />
             </div>
             
         );
