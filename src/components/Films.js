@@ -15,7 +15,7 @@ class Films extends React.Component {
                 return (
                     <div key={element.id}>
                     <img src={this.props.actorImage} alt={element.title} /> 
-                    <h3>{element.title}</h3>
+                    <h3>{element.title} ({element.release_date.substr(0, 4)})</h3>
                     <br />
                 </div>
                 )
@@ -23,7 +23,7 @@ class Films extends React.Component {
                 return (
                     <div key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h3>{element.title}</h3>
+                        <h3>{element.title} ({element.release_date.substr(0, 4)})</h3>
                         <br />
                     </div>
                 )
