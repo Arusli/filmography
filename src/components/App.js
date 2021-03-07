@@ -49,8 +49,9 @@ class App extends React.Component {
             }
         })
 
-        console.log(response2.data.cast);
+       
         this.setState({filmArray: response2.data.cast})
+        console.log(this.state.filmArray)
 
     } //end onSubmit
 
