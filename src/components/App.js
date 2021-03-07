@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import Results from './Results';
+import Films from './Films';
 import axios from 'axios';
 
 
@@ -17,7 +18,8 @@ class App extends React.Component {
     state = {
         response: null,
         personId: null,
-        imageUrl: ''
+        imageUrl: '',
+        filmArray: []
     };
 
     onSubmit = async (term) => {
@@ -28,7 +30,6 @@ class App extends React.Component {
             } 
         })
 
-        console.log(response);
         this.setState({response: response.data, personId: response.data.results[0].id});
         // console.log(this.state.response, this.state.personId); //1892
 
@@ -48,7 +49,8 @@ class App extends React.Component {
             }
         })
 
-        console.log(response2.data.cast[0].title, imageBaseUrlSmall + response2.data.cast[0].poster_path);
+        console.log(response2.data.cast);
+        this.setState({filmArray: response2.data.cast})
 
     } //end onSubmit
 
@@ -59,6 +61,7 @@ class App extends React.Component {
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
                 <Results image={this.state.imageUrl} />
+                <Films filmArray={this.state.filmArray} />
             </div>
             
         );
