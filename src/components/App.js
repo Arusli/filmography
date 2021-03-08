@@ -88,9 +88,18 @@ class App extends React.Component {
         this.setState({filmArray: response2.data.cast})
         console.log(this.state.filmArray)
 
-    } //end onSubmit
+    }; //end onSubmit
 
+    onClick = async (e) => {
+        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
+            params: {
+                api_key: key
+            }
+        })
 
+        this.setState({filmArray: response2.data.cast})
+        console.log(this.state.filmArray)
+    };
  
     render() {
         return (
