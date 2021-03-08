@@ -28,7 +28,7 @@ class App extends React.Component {
 
     onSubmit = async (term) => {
         const personArray = [];
-       const response = await axios.get('https://api.themoviedb.org/3/search/person', {
+        const response = await axios.get('https://api.themoviedb.org/3/search/person', {
             params: {
                 api_key: key,
                 query: term
@@ -53,7 +53,7 @@ class App extends React.Component {
 
 
 
-        //the following needs to work of onClick of the result image, separate function
+//creates default actor image for use in imageless films //
         const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/images`, {
             params: {
                 api_key: key,
@@ -74,6 +74,9 @@ class App extends React.Component {
                 imageUrlSmall: blankProfile
             });
         };
+//end: creates default actor image for use in imageless films //
+
+        //the following needs to work of onClick of the result image, separate function
 
         const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
             params: {
