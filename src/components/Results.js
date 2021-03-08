@@ -4,20 +4,17 @@ const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
 const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
 class Results extends React.Component {
 
-    state = {
-        personId: null
-    }
 
     //should change this.state.personId, which will be used to change the Films display.
     //use callback to send data from this onclick to App.js (with props)
-    onClick = (e) => {
-        this.setState({personId: e.currentTarget.id});
-    }
+    // onClick = (e) => {
+    //     this.setState({personId: e.currentTarget.id});
+    // }
 
    mapArray(e) {
        if (e.profile_path) {
             return (
-                <div onClick={this.onClick} style={{cursor:'pointer'}} id={e.id} > 
+                <div onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} > 
                     <div><img src={imageBaseUrlSmall + e.profile_path} /></div>
                     <div>{e.name}</div>
                 </div>   
@@ -34,7 +31,6 @@ class Results extends React.Component {
    }
 
     render() {
-        console.log(this.state.personId);
         return (
             <div style={{display: 'flex'}}>
                 {this.props.personArray.map(this.mapArray, this)}

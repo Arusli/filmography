@@ -19,6 +19,7 @@ class App extends React.Component {
     state = {
         response: null,
         personId: null,
+        actorId: null,
         personResults: [],
         personArray: [],
         imageUrl: '',
@@ -90,22 +91,18 @@ class App extends React.Component {
 
     }; //end onSubmit
 
-    onClick = async (e) => {
-        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
-            params: {
-                api_key: key
-            }
-        })
-
-        this.setState({filmArray: response2.data.cast})
-        console.log(this.state.filmArray)
+    //pass as prop
+    onClick = (e) => {
+        this.setState({actorId: e.currentTarget.id});
     };
  
     render() {
+        console.log(this.state.actorId)
+        console.log(this.state.personId);
         return (
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
-                <Results image={this.state.imageUrl} personArray={this.state.personArray} />
+                <Results image={this.state.imageUrl} personArray={this.state.personArray} click={this.onClick} />
                 <Films filmArray={this.state.filmArray} actorImage={this.state.imageUrlSmall} />
             </div>
             
