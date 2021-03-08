@@ -4,7 +4,7 @@ class SearchBar extends React.Component {
 
     state = {
         searchterm: 'ex. matt damon...',
-        displayterm: '',
+        displayterm: ''
     };
 
     onInputChange = (event) => {

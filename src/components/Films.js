@@ -46,20 +46,9 @@ class Films extends React.Component {
             }
     }
 
-    // mapImages(element) {
-    //         return (
-    //             <div>
-    //                 <img src={imageBaseUrlSmall + element.poster_path} />
-    //                 <h3>{element.title}</h3>
-    //                 <br />
-    //             </div>
-    //         )
-    //     }
 
 
-    // this.props.filmArray[0][0].title
-    render() {
-        
+    render() {        
         console.log(this.props.actorImage);
         console.log(this);
 
