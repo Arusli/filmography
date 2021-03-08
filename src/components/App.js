@@ -19,12 +19,15 @@ class App extends React.Component {
     state = {
         response: null,
         personId: null,
+        personResults: [],
+        personArray: [],
         imageUrl: '',
         imageUrlSmall: '',
         filmArray: []
     };
 
     onSubmit = async (term) => {
+        const personArray = [];
        const response = await axios.get('https://api.themoviedb.org/3/search/person', {
             params: {
                 api_key: key,
@@ -32,9 +35,25 @@ class App extends React.Component {
             } 
         })
 
-        this.setState({response: response.data, personId: response.data.results[0].id});
-        console.log(this.state.response, this.state.personId); //1892
+        this.setState({
+            response: response.data, 
+            personId: response.data.results[0].id,
+            personResults: response.data.results
+        });
 
+        console.log(this.state.personResults, this.state.personId); //1892
+
+        this.state.personResults.forEach(
+            (e) => {
+                personArray.push({name: e.name, id: e.id, profile_path: e.profile_path});
+            });
+
+        this.setState({personArray: personArray});
+        console.log(this.state.personArray);
+
+
+
+        //the following needs to work of onClick of the result image, separate function
         const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/images`, {
             params: {
                 api_key: key,
@@ -74,7 +93,7 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
-                <Results image={this.state.imageUrl} />
+                <Results image={this.state.imageUrl} personArray={this.state.personArray} />
                 <Films filmArray={this.state.filmArray} actorImage={this.state.imageUrlSmall} />
             </div>
             
