@@ -8,6 +8,7 @@ import axios from 'axios';
 const key = 'b48c4b54c6c63147c8e82f9fe931740c';
 const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
+const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
 // link: https://developers.themoviedb.org/3/search/search-movies
 
 //photo endpoints:
@@ -32,20 +33,28 @@ class App extends React.Component {
         })
 
         this.setState({response: response.data, personId: response.data.results[0].id});
-        // console.log(this.state.response, this.state.personId); //1892
+        console.log(this.state.response, this.state.personId); //1892
 
         const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/images`, {
             params: {
                 api_key: key,
             }
-        })
+        });
 
         console.log(imageResponse);
-        this.setState({
-            imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
-            imageUrlSmall: imageBaseUrlSmall + imageResponse.data.profiles[0].file_path
-        });
-        console.log(this.state.imageUrl);
+
+        if (imageResponse.data.profiles.length > 0) {
+            this.setState({
+                imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
+                imageUrlSmall: imageBaseUrlSmall + imageResponse.data.profiles[0].file_path
+            });
+            console.log(this.state.imageUrl)
+        } else {
+            this.setState({
+                imageUrl: blankProfile,
+                imageUrlSmall: blankProfile
+            });
+        };
 
         const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
             params: {

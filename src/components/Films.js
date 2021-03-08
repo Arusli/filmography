@@ -11,19 +11,35 @@ class Films extends React.Component {
 
     //why isn't this definited inside mapImages but it is inside render?
     mapImages(element) {
-            if (element.poster_path === null) {
+            if (!element.poster_path && element.release_date) {
                 return (
                     <div key={element.id}>
-                    <img src={this.props.actorImage} alt={element.title} /> 
-                    <h3>{element.title} ({element.release_date.substr(0, 4)})</h3>
-                    <br />
-                </div>
+                        <img src={this.props.actorImage} alt={element.title} /> 
+                        <h3>{element.title} ({element.release_date.substr(0,4)})</h3>
+                        <br />
+                    </div>
+                )
+            } else if (!element.poster_path && !element.release_date) {
+                return (
+                    <div key={element.id}>
+                        <img src={this.props.actorImage} alt={element.title} /> 
+                        <h3>{element.title}</h3>
+                        <br />
+                    </div>
+                )
+            } else if (element.poster_path && element.release_date) {
+                return (
+                    <div key={element.id}>
+                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
+                        <h3>{element.title} ({element.release_date.substr(0,4)})</h3>
+                        <br />
+                    </div>
                 )
             } else {
                 return (
                     <div key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h3>{element.title} ({element.release_date.substr(0, 4)})</h3>
+                        <h3>{element.title} </h3>
                         <br />
                     </div>
                 )
