@@ -49,8 +49,7 @@ class Films extends React.Component {
 
 
     render() {        
-        console.log(this.props.actorImage);
-        console.log(this);
+        console.log(this.props.filmArray);
 
         if (this.props.filmArray.length > 0) {
             return (

@@ -18,7 +18,6 @@ class App extends React.Component {
 
     state = {
         response: null,
-        personId: null,
         actorId: null,
         personResults: [],
         personArray: [],
@@ -37,12 +36,11 @@ class App extends React.Component {
         })
 
         this.setState({
+            filmArray: [],
             response: response.data, 
-            personId: response.data.results[0].id,
             personResults: response.data.results
         });
 
-        console.log(this.state.personResults, this.state.personId); //1892
 
         this.state.personResults.forEach(
             (e) => {
@@ -50,12 +48,11 @@ class App extends React.Component {
             });
 
         this.setState({personArray: personArray});
-        console.log(this.state.personArray);
 
     }; //end onSubmit
 
+
 //creates default actor image for use in imageless films //
-        
     changeDefaultImage = async () => {
         const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/images`, {
             params: {
@@ -68,7 +65,7 @@ class App extends React.Component {
                 imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
                 imageUrlSmall: imageBaseUrlSmall + imageResponse.data.profiles[0].file_path
             });
-            console.log(this.state.imageUrl)
+  
         } else {
             this.setState({
                 imageUrl: blankProfile,
@@ -79,17 +76,6 @@ class App extends React.Component {
         
 //end: creates default actor image for use in imageless films //
 
-        //the following needs to work of onClick of the result image, separate function
-
-        // const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
-        //     params: {
-        //         api_key: key
-        //     }
-        // })
-
-       
-        // this.setState({filmArray: response2.data.cast})
-        // console.log(this.state.filmArray)
 
     getCredits = async () => {
         const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/movie_credits`, {
@@ -110,13 +96,13 @@ class App extends React.Component {
     //pass as prop
     onClick = async (e) => {
         await this.setState({actorId: e.currentTarget.id});
+        await this.setState({filmArray: []});
         this.changeFilms();
     };
  
  
 
     render() {
-        console.log(this.state.actorId);
         return (
             <div>
                 <SearchBar onSubmit={this.onSubmit} />
