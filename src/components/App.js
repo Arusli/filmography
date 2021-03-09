@@ -52,16 +52,16 @@ class App extends React.Component {
         this.setState({personArray: personArray});
         console.log(this.state.personArray);
 
-
+    }; //end onSubmit
 
 //creates default actor image for use in imageless films //
-        const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/images`, {
+        
+    changeDefaultImage = async () => {
+        const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/images`, {
             params: {
                 api_key: key,
             }
         });
-
-        console.log(imageResponse);
 
         if (imageResponse.data.profiles.length > 0) {
             this.setState({
@@ -75,30 +75,48 @@ class App extends React.Component {
                 imageUrlSmall: blankProfile
             });
         };
+    }
+        
 //end: creates default actor image for use in imageless films //
 
         //the following needs to work of onClick of the result image, separate function
 
-        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
+        // const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.personId}/movie_credits`, {
+        //     params: {
+        //         api_key: key
+        //     }
+        // })
+
+       
+        // this.setState({filmArray: response2.data.cast})
+        // console.log(this.state.filmArray)
+
+    getCredits = async () => {
+        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/movie_credits`, {
             params: {
                 api_key: key
             }
         })
-
-       
+           
         this.setState({filmArray: response2.data.cast})
-        console.log(this.state.filmArray)
+    }
 
-    }; //end onSubmit
+    changeFilms() {
+        this.getCredits();
+        this.changeDefaultImage();
+    }
+   
 
     //pass as prop
-    onClick = (e) => {
-        this.setState({actorId: e.currentTarget.id});
+    onClick = async (e) => {
+        await this.setState({actorId: e.currentTarget.id});
+        this.changeFilms();
     };
  
+ 
+
     render() {
-        console.log(this.state.actorId)
-        console.log(this.state.personId);
+        console.log(this.state.actorId);
         return (
             <div>
                 <SearchBar onSubmit={this.onSubmit} />

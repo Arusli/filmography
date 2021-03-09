@@ -21,7 +21,7 @@ class Results extends React.Component {
             )
        } else {
            return (
-               <div onClick={this.onClick} style={{cursor:'pointer'}} id={e.id}>
+               <div onClick={this.props.click} style={{cursor:'pointer'}} id={e.id}>
                     <div><img src={blankProfile} style={{width: 150, height: 225}} /></div>
                     <div>{e.name}</div>
                </div>
