@@ -11,6 +11,7 @@ class Films extends React.Component {
 
     //why isn't this definited inside mapImages but it is inside render?
     mapImages(element) {
+        if (element.media_type === 'movie') {
             if (!element.poster_path && element.release_date) {
                 return (
                     <div key={element.id}>
@@ -44,6 +45,42 @@ class Films extends React.Component {
                     </div>
                 )
             }
+        } else {
+            if (!element.poster_path && element.first_air_date) {
+                return (
+                    <div key={element.id}>
+                        <img src={this.props.actorImage} alt={element.name} /> 
+                        <h3>{element.name} ({element.first_air_date.substr(0,4)})</h3>
+                        <br />
+                    </div>
+                )
+            } else if (!element.poster_path && !element.first_air_date) {
+                return (
+                    <div key={element.id}>
+                        <img src={this.props.actorImage} alt={element.name} /> 
+                        <h3>{element.name}</h3>
+                        <br />
+                    </div>
+                )
+            } else if (element.poster_path && element.first_air_date) {
+                return (
+                    <div key={element.id}>
+                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                        <h3>{element.name} ({element.first_air_date.substr(0,4)})</h3>
+                        <br />
+                    </div>
+                )
+            } else {
+                return (
+                    <div key={element.id}>
+                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                        <h3>{element.name} </h3>
+                        <br />
+                    </div>
+                )
+            }
+        }
+            
     }
 
 

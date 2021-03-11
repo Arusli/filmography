@@ -78,13 +78,14 @@ class App extends React.Component {
 
 
     getCredits = async () => {
-        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/movie_credits`, {
+        const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/combined_credits`, {
             params: {
                 api_key: key
             }
         })
            
-        this.setState({filmArray: response2.data.cast})
+        this.setState({filmArray: response2.data.cast}); //movies in which this person was in the CAST!
+        console.log(response2.data);
     }
 
     changeFilms() {
