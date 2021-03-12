@@ -90,13 +90,13 @@ class Films extends React.Component {
 
         if (this.props.filmArray.length > 0) {
             return (
-                <div>
+                <div className="ui container">
                     <div>{this.props.filmArray.map(this.mapImages, this)}</div>
                 </div>        
             )
         } else {
             return (
-                <div>films</div>
+                <div className="ui container">films</div>
             )
         }
         

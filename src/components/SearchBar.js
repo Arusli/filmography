@@ -20,11 +20,13 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Filmography of: {this.state.displayterm}</h3>  
-                <form onSubmit={this.onSubmit}> 
-                    <input type="text" onChange={this.onInputChange} value={this.state.searchterm} />
-                </form>
+            <div className="ui container">
+                <div className="grid">
+                    <h3 className="ui basic segment center aligned">Filmography of: {this.state.displayterm}</h3>  
+                    <form className="ui fluid input" onSubmit={this.onSubmit}> 
+                        <input type="text" onChange={this.onInputChange} value={this.state.searchterm} />
+                    </form>
+                </div>
             </div>         
         )
     }

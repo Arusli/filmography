@@ -32,8 +32,10 @@ class Results extends React.Component {
 
     render() {
         return (
-            <div style={{display: 'flex'}}>
-                {this.props.personArray.map(this.mapArray, this)}
+            <div className="ui container">
+                <div className="ui grid container">
+                    {this.props.personArray.map(this.mapArray, this)}
+                </div>
             </div>
 
         )  
