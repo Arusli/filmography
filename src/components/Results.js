@@ -14,16 +14,20 @@ class Results extends React.Component {
    mapArray(e) {
        if (e.profile_path) {
             return (
-                <div onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} > 
-                    <div><img src={imageBaseUrlSmall + e.profile_path} /></div>
-                    <div>{e.name}</div>
+                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} > 
+                    <div className="ui center aligned segment">
+                        <div><img src={imageBaseUrlSmall + e.profile_path} /></div>
+                        <div>{e.name}</div>
+                    </div>
                 </div>   
             )
        } else {
            return (
-               <div onClick={this.props.click} style={{cursor:'pointer'}} id={e.id}>
-                    <div><img src={blankProfile} style={{width: 150, height: 225}} /></div>
-                    <div>{e.name}</div>
+               <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id}>
+                    <div className="ui center aligned segment">
+                        <div><img src={blankProfile} style={{width: 150, height: 225}} /></div>
+                        <div>{e.name}</div>
+                    </div>
                </div>
            )
        }
@@ -33,7 +37,7 @@ class Results extends React.Component {
     render() {
         return (
             <div className="ui container">
-                <div className="ui grid container">
+                <div className="ui stackable four column grid">
                     {this.props.personArray.map(this.mapArray, this)}
                 </div>
             </div>

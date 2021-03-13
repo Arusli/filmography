@@ -3,7 +3,7 @@ import React from 'react';
 class SearchBar extends React.Component {
 
     state = {
-        searchterm: 'ex. matt damon...',
+        searchterm: '',
         displayterm: ''
     };
 
@@ -21,10 +21,10 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="ui container">
-                <div className="grid">
+                <div>
                     <h3 className="ui basic segment center aligned">Filmography of: {this.state.displayterm}</h3>  
-                    <form className="ui fluid input" onSubmit={this.onSubmit}> 
-                        <input type="text" onChange={this.onInputChange} value={this.state.searchterm} />
+                    <form className="ui fluid input focus" onSubmit={this.onSubmit}> 
+                        <input type="text" placeholder="ex. matt damon..." onChange={this.onInputChange} value={this.state.searchterm} />
                     </form>
                 </div>
             </div>         

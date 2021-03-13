@@ -105,9 +105,13 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="ui container">
                 <SearchBar onSubmit={this.onSubmit} />
+                <br />
+                <br />
                 <Results image={this.state.imageUrl} personArray={this.state.personArray} click={this.onClick} />
+                <br />
+                <br />
                 <Films filmArray={this.state.filmArray} actorImage={this.state.imageUrlSmall} />
             </div>
             

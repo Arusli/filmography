@@ -14,68 +14,60 @@ class Films extends React.Component {
         if (element.media_type === 'movie') {
             if (!element.poster_path && element.release_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={this.props.actorImage} alt={element.title} /> 
-                        <h3>{element.title} ({element.release_date.substr(0,4)})</h3>
-                        <br />
+                        <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
                     </div>
                 )
             } else if (!element.poster_path && !element.release_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={this.props.actorImage} alt={element.title} /> 
-                        <h3>{element.title}</h3>
-                        <br />
+                        <h5>{element.title}</h5>
                     </div>
                 )
             } else if (element.poster_path && element.release_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h3>{element.title} ({element.release_date.substr(0,4)})</h3>
-                        <br />
+                        <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
                     </div>
                 )
             } else {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h3>{element.title} </h3>
-                        <br />
+                        <h5>{element.title} </h5>
                     </div>
                 )
             }
         } else {
             if (!element.poster_path && element.first_air_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={this.props.actorImage} alt={element.name} /> 
-                        <h3>{element.name} ({element.first_air_date.substr(0,4)})</h3>
-                        <br />
+                        <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
                     </div>
                 )
             } else if (!element.poster_path && !element.first_air_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={this.props.actorImage} alt={element.name} /> 
-                        <h3>{element.name}</h3>
-                        <br />
+                        <h5>{element.name}</h5>
                     </div>
                 )
             } else if (element.poster_path && element.first_air_date) {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
-                        <h3>{element.name} ({element.first_air_date.substr(0,4)})</h3>
-                        <br />
+                        <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
                     </div>
                 )
             } else {
                 return (
-                    <div key={element.id}>
+                    <div className="column" key={element.id}>
                         <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
-                        <h3>{element.name} </h3>
-                        <br />
+                        <h5>{element.name} </h5>
                     </div>
                 )
             }
@@ -91,12 +83,14 @@ class Films extends React.Component {
         if (this.props.filmArray.length > 0) {
             return (
                 <div className="ui container">
-                    <div>{this.props.filmArray.map(this.mapImages, this)}</div>
+                    <div className="ui stackable four column grid">
+                        {this.props.filmArray.map(this.mapImages, this)}
+                    </div>
                 </div>        
             )
         } else {
             return (
-                <div className="ui container">films</div>
+                <div className="ui container grid">films</div>
             )
         }
         
