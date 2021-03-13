@@ -15,29 +15,37 @@ class Films extends React.Component {
             if (!element.poster_path && element.release_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={this.props.actorImage} alt={element.title} /> 
-                        <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+                        <div className="ui center aligned segment">
+                            <img src={this.props.actorImage} alt={element.title} /> 
+                            <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+                        </div>
                     </div>
                 )
             } else if (!element.poster_path && !element.release_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={this.props.actorImage} alt={element.title} /> 
-                        <h5>{element.title}</h5>
+                            <div className="ui center aligned segment">
+                            <img src={this.props.actorImage} alt={element.title} /> 
+                            <h5>{element.title}</h5>
+                        </div>
                     </div>
                 )
             } else if (element.poster_path && element.release_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+                        <div className="ui center aligned segment">
+                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
+                            <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+                        </div>
                     </div>
                 )
             } else {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
-                        <h5>{element.title} </h5>
+                            <div className="ui center aligned segment">
+                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
+                            <h5>{element.title} </h5>
+                        </div>
                     </div>
                 )
             }
@@ -45,29 +53,37 @@ class Films extends React.Component {
             if (!element.poster_path && element.first_air_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={this.props.actorImage} alt={element.name} /> 
-                        <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
+                        <div className="ui center aligned segment">
+                            <img src={this.props.actorImage} alt={element.name} /> 
+                            <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
+                        </div>
                     </div>
                 )
             } else if (!element.poster_path && !element.first_air_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={this.props.actorImage} alt={element.name} /> 
-                        <h5>{element.name}</h5>
+                            <div className="ui center aligned segment">
+                            <img src={this.props.actorImage} alt={element.name} /> 
+                            <h5>{element.name}</h5>
+                        </div>
                     </div>
                 )
             } else if (element.poster_path && element.first_air_date) {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
-                        <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
+                        <div className="ui center aligned segment">
+                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                            <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
+                        </div>
                     </div>
                 )
             } else {
                 return (
                     <div className="column" key={element.id}>
-                        <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
-                        <h5>{element.name} </h5>
+                            <div className="ui center aligned segment">
+                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                            <h5>{element.name} </h5>
+                        </div>
                     </div>
                 )
             }

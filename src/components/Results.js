@@ -16,7 +16,7 @@ class Results extends React.Component {
             return (
                 <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} > 
                     <div className="ui center aligned segment">
-                        <div><img src={imageBaseUrlSmall + e.profile_path} /></div>
+                        <div><img className="ui centered image" src={imageBaseUrlSmall + e.profile_path} /></div>
                         <div>{e.name}</div>
                     </div>
                 </div>   
@@ -25,7 +25,7 @@ class Results extends React.Component {
            return (
                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id}>
                     <div className="ui center aligned segment">
-                        <div><img src={blankProfile} style={{width: 150, height: 225}} /></div>
+                        <div><img className="ui centered image" src={blankProfile} style={{width: 150, height: 225}} /></div>
                         <div>{e.name}</div>
                     </div>
                </div>
