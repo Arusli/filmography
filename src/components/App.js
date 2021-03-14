@@ -23,7 +23,10 @@ class App extends React.Component {
         personArray: [],
         imageUrl: '',
         imageUrlSmall: '',
-        filmArray: []
+        filmArray: [],
+        actorBio: '',
+        resultsDisplay: '',
+        actorName: ''
     };
 
     onSubmit = async (term) => {
@@ -38,7 +41,8 @@ class App extends React.Component {
         this.setState({
             filmArray: [],
             response: response.data, 
-            personResults: response.data.results
+            personResults: response.data.results,
+            resultsDisplay: 'inline'
         });
 
 
@@ -83,9 +87,25 @@ class App extends React.Component {
                 api_key: key
             }
         })
+        
+        const response3 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}`, {
+            params: {
+                api_key: key
+            }
+        })
            
         this.setState({filmArray: response2.data.cast}); //movies in which this person was in the CAST!
+        
+        if (response3.data.biography) {
+            this.setState({actorBio: response3.data.biography});
+            this.setState({actorName:response3.data.name});
+        } else {
+            this.setState({actorBio: 'Biography unavailable.'});
+            this.setState({actorName:response3.data.name});
+        }
+      
         console.log(response2.data);
+        console.log(response3.data)
     }
 
     changeFilms() {
@@ -99,6 +119,8 @@ class App extends React.Component {
         await this.setState({actorId: e.currentTarget.id});
         await this.setState({filmArray: []});
         this.changeFilms();
+        this.setState({resultsDisplay: 'none'});
+        console.log(this.state.resultsDisplay)
     };
  
  
@@ -106,13 +128,16 @@ class App extends React.Component {
     render() {
         return (
             <div className="ui container">
-                <SearchBar onSubmit={this.onSubmit} />
+                <SearchBar onSubmit={this.onSubmit} display={this.state.resultsDisplay} />
+                <Results image={this.state.imageUrl} personArray={this.state.personArray} click={this.onClick} display={this.state.resultsDisplay} />
                 <br />
                 <br />
-                <Results image={this.state.imageUrl} personArray={this.state.personArray} click={this.onClick} />
-                <br />
-                <br />
-                <Films filmArray={this.state.filmArray} actorImage={this.state.imageUrlSmall} />
+                <Films 
+                filmArray={this.state.filmArray} 
+                actorImage={this.state.imageUrlSmall} 
+                actorBio={this.state.actorBio} 
+                name={this.state.actorName}
+                />
             </div>
             
         );

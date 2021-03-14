@@ -99,6 +99,21 @@ class Films extends React.Component {
         if (this.props.filmArray.length > 0) {
             return (
                 <div className="ui container">
+                    <div className="ui segment" style={{backgroundColor: "lightblue"}}>
+                        <div className="ui stackable grid">
+                            <div className="four wide column">
+                                <div className="ui center aligned container">
+                                    <img className="ui centered small image" src={this.props.actorImage} />
+                                    <h3>{this.props.name}</h3>    
+                                </div>
+                            </div>
+                            <div className="ten wide column">{this.props.actorBio}</div>
+                        </div>
+                    </div>
+                    <div className="ui center aligned container" style={{margin: "25px"}}>
+                        <h4>FILM and TV CREDITS</h4>
+                        <h4>(cast only)</h4>
+                    </div>
                     <div className="ui stackable four column grid">
                         {this.props.filmArray.map(this.mapImages, this)}
                     </div>
@@ -106,7 +121,7 @@ class Films extends React.Component {
             )
         } else {
             return (
-                <div className="ui container grid">films</div>
+                <div className="ui container grid"></div>
             )
         }
         
