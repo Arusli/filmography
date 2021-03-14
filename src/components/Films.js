@@ -99,7 +99,7 @@ class Films extends React.Component {
         if (this.props.filmArray.length > 0) {
             return (
                 <div className="ui container">
-                    <div className="ui segment" style={{backgroundColor: "lightblue"}}>
+                    <div className="ui segment" style={{backgroundColor: "skyblue", padding: "20px"}}>
                         <div className="ui stackable grid">
                             <div className="four wide column">
                                 <div className="ui center aligned container">
@@ -121,7 +121,7 @@ class Films extends React.Component {
             )
         } else {
             return (
-                <div className="ui container grid"></div>
+                <div style={{display: "none"}}></div>
             )
         }
         

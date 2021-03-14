@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import Results from './Results';
+import SearchResults from './SearchResults';
 import Films from './Films';
 import axios from 'axios';
 
@@ -19,13 +19,14 @@ class App extends React.Component {
     state = {
         response: null,
         actorId: null,
+        searchTerm: '',
         personResults: [],
         personArray: [],
         imageUrl: '',
         imageUrlSmall: '',
         filmArray: [],
         actorBio: '',
-        resultsDisplay: '',
+        resultsDisplay: 'none',
         actorName: ''
     };
 
@@ -42,7 +43,8 @@ class App extends React.Component {
             filmArray: [],
             response: response.data, 
             personResults: response.data.results,
-            resultsDisplay: 'inline'
+            resultsDisplay: 'inline',
+            searchTerm: term.toUpperCase()
         });
 
 
@@ -129,14 +131,18 @@ class App extends React.Component {
         return (
             <div className="ui container">
                 <SearchBar onSubmit={this.onSubmit} display={this.state.resultsDisplay} />
-                <Results image={this.state.imageUrl} personArray={this.state.personArray} click={this.onClick} display={this.state.resultsDisplay} />
-                <br />
-                <br />
+                <SearchResults 
+                    image={this.state.imageUrl} 
+                    personArray={this.state.personArray} 
+                    click={this.onClick} 
+                    display={this.state.resultsDisplay} 
+                    searchTerm={this.state.searchTerm}
+                    />
                 <Films 
-                filmArray={this.state.filmArray} 
-                actorImage={this.state.imageUrlSmall} 
-                actorBio={this.state.actorBio} 
-                name={this.state.actorName}
+                    filmArray={this.state.filmArray} 
+                    actorImage={this.state.imageUrlSmall} 
+                    actorBio={this.state.actorBio} 
+                    name={this.state.actorName}
                 />
             </div>
             
