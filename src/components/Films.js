@@ -16,7 +16,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                         <div className="ui center aligned segment">
-                            <img src={this.props.actorImage} alt={element.title} /> 
+                            <img className="ui centered image" src={this.props.actorImage} alt={element.title} /> 
                             <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
                         </div>
                     </div>
@@ -25,7 +25,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                             <div className="ui center aligned segment">
-                            <img src={this.props.actorImage} alt={element.title} /> 
+                            <img className="ui centered image" src={this.props.actorImage} alt={element.title} /> 
                             <h5>{element.title}</h5>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                         <div className="ui center aligned segment">
-                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
+                            <img className="ui centered image" src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
                             <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                             <div className="ui center aligned segment">
-                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
+                            <img className="ui centered image" src={imageBaseUrlSmall + element.poster_path} alt={element.title} />
                             <h5>{element.title} </h5>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                         <div className="ui center aligned segment">
-                            <img src={this.props.actorImage} alt={element.name} /> 
+                            <img className="ui centered image" src={this.props.actorImage} alt={element.name} /> 
                             <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                             <div className="ui center aligned segment">
-                            <img src={this.props.actorImage} alt={element.name} /> 
+                            <img className="ui centered image" src={this.props.actorImage} alt={element.name} /> 
                             <h5>{element.name}</h5>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                         <div className="ui center aligned segment">
-                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                            <img className="ui centered image" src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
                             <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ class Films extends React.Component {
                 return (
                     <div className="column" key={element.id}>
                             <div className="ui center aligned segment">
-                            <img src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
+                            <img className="ui centered image" src={imageBaseUrlSmall + element.poster_path} alt={element.name} />
                             <h5>{element.name} </h5>
                         </div>
                     </div>

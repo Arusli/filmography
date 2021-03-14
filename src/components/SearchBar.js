@@ -22,14 +22,17 @@ class SearchBar extends React.Component {
     render() {
         if (this.state.initial) {
             return (
-                <div style={{minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="ui center aligned container">
-                        <h1 className="ui basic segment center aligned">Filmography Finder</h1>  
-                        <form className="ui center aligned huge input focus" onSubmit={this.onSubmit}> 
-                            <input type="text" placeholder="ex. matt damon..." onChange={this.onInputChange} value={this.state.searchterm} />
-                        </form>
-                    </div>
-                </div>         
+                <div>
+                    <h1 className="ui basic segment center aligned">FILMOGRAPHY FINDER</h1>
+                    <div style={{minHeight: "90vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <div className="ui center aligned container">
+                            <form className="ui center aligned huge input focus" onSubmit={this.onSubmit}> 
+                                <input type="text" placeholder="ex. matt damon" onChange={this.onInputChange} value={this.state.searchterm} />
+                            </form>
+                            <h4>(search an actor...)</h4>
+                        </div>
+                    </div>       
+                </div>  
             )
         } else {
             return (
