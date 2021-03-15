@@ -101,10 +101,14 @@ class App extends React.Component {
                 api_key: key
             }
         })
-           
-        this.setState({filmArray: response2.data.cast}); //movies/tv shows in which this person was in the CAST!
-
+        
         //this array SHOULD BE SORTED BY POPULARITY/RELEASE DATE IF POSSIBLE
+        const array = response2.data.cast.sort( (a,b) => {
+            return b.popularity - a.popularity;
+        })
+        this.setState({filmArray: array}); //movies/tv shows in which this person was in the CAST!
+        console.log(array);
+    
         
         if (response3.data.biography) {
             this.setState({
