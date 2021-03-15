@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
         if (this.state.initial) {
             return (
                 <div>
-                    <h1 className="ui basic segment center aligned">FILMOGRAPHY FINDER</h1>
+                    <h1 className="ui basic segment center aligned" style={{color: "purple"}}>FILMOGRAPHY FINDER</h1>
                     <div style={{minHeight: "90vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <div className="ui center aligned container">
                             <form className="ui center aligned huge input focus" onSubmit={this.onSubmit}> 
@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
             return (
                 <div className="ui container" style={{marginBottom: "50px"}}>
                     <div className="ui center aligned container">
-                        <h1 className="ui basic segment center aligned">Filmography Finder</h1>  
+                        <h1 className="ui basic segment center aligned" style={{color: "purple"}}>Filmography Finder</h1>  
                         <form className="ui center aligned huge input focus" onSubmit={this.onSubmit}> 
                             <input type="text" placeholder="ex. matt damon..." onChange={this.onInputChange} value={this.state.searchterm} />
                         </form>

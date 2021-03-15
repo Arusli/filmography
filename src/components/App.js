@@ -9,6 +9,7 @@ const key = 'b48c4b54c6c63147c8e82f9fe931740c';
 const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
 const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
+const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
 // link: https://developers.themoviedb.org/3/search/search-movies
 
 //photo endpoints:
@@ -27,7 +28,10 @@ class App extends React.Component {
         filmArray: [],
         actorBio: '',
         resultsDisplay: 'none',
-        actorName: ''
+        actorName: '',
+        profileUrl: '',
+        profileUrl2: '',
+        blank: blank
     };
 
     onSubmit = async (term) => {
@@ -66,6 +70,8 @@ class App extends React.Component {
             }
         });
 
+        console.log(imageResponse.data);
+
         if (imageResponse.data.profiles.length > 0) {
             this.setState({
                 imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
@@ -96,18 +102,27 @@ class App extends React.Component {
             }
         })
            
-        this.setState({filmArray: response2.data.cast}); //movies in which this person was in the CAST!
+        this.setState({filmArray: response2.data.cast}); //movies/tv shows in which this person was in the CAST!
+
+        //this array SHOULD BE SORTED BY POPULARITY/RELEASE DATE IF POSSIBLE
         
         if (response3.data.biography) {
-            this.setState({actorBio: response3.data.biography});
-            this.setState({actorName:response3.data.name});
+            this.setState({
+                actorBio: response3.data.biography,
+                actorName: response3.data.name,
+                profileUrl: imageBaseUrlLarge + response3.data.profile_path,
+                actorName: response3.data.name
+                });
         } else {
-            this.setState({actorBio: 'Biography unavailable.'});
-            this.setState({actorName:response3.data.name});
+            this.setState({
+                actorBio: 'Biography unavailable.',
+                actorName: response3.data.name
+            });
         }
       
         console.log(response2.data);
-        console.log(response3.data)
+        console.log(response3.data);
+        console.log(this.state.profileUrl)
     }
 
     changeFilms() {
@@ -115,14 +130,17 @@ class App extends React.Component {
         this.changeDefaultImage();
     }
    
+    logger() {
+        console.log('logger!');
+    }
 
     //pass as prop
-    onClick = async (e) => {
-        await this.setState({actorId: e.currentTarget.id});
+    onClick = async (event) => {
+        await this.setState({actorId: event.currentTarget.id});
         await this.setState({filmArray: []});
         this.changeFilms();
         this.setState({resultsDisplay: 'none'});
-        console.log(this.state.resultsDisplay)
+        console.log(this.state.resultsDisplay);
     };
  
  
@@ -143,6 +161,7 @@ class App extends React.Component {
                     actorImage={this.state.imageUrlSmall} 
                     actorBio={this.state.actorBio} 
                     name={this.state.actorName}
+                    blank={this.state.blank}
                 />
             </div>
             

@@ -4,12 +4,16 @@ const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
 const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
 class Results extends React.Component {
 
+    state = {hello: 'hello'}
 
     //should change this.state.personId, which will be used to change the Films display.
     //use callback to send data from this onclick to App.js (with props)
     // onClick = (e) => {
     //     this.setState({personId: e.currentTarget.id});
     // }
+
+
+//BIG QUESTION: Is there a way to pass the e.id below in another way other than assigning it to the id of the div??
 
    mapArray(e) {
        if (e.profile_path) {
