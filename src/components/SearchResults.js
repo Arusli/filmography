@@ -12,7 +12,7 @@ class Results extends React.Component {
    mapArray(e) {
        if (e.profile_path) {
             return (
-                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} key={e.id} > 
+                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} data-actorid={e.id} key={e.id} > 
                     <div className="ui center aligned segment">
                         <div><img className="ui centered image" src={imageBaseUrlSmall + e.profile_path} /></div>
                         <div>{e.name}</div>
@@ -21,7 +21,7 @@ class Results extends React.Component {
             )
        } else {
            return (
-               <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} key={e.id} >
+               <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} data-actorid={e.id} key={e.id} >
                     <div className="ui center aligned segment">
                         <div><img className="ui centered image" src={blankProfile} style={{width: 150, height: 225}} /></div>
                         <div>{e.name}</div>

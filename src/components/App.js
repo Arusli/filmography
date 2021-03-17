@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import SearchResults2 from './SearchResults2';
 import Films from './Films';
 import axios from 'axios';
 
@@ -142,7 +143,7 @@ class App extends React.Component {
 
     //pass as prop
     onClick = async (event) => {
-        await this.setState({actorId: event.currentTarget.id});
+        await this.setState({actorId: event.currentTarget.dataset.actorid});
         await this.setState({filmArray: []});
         this.changeFilms();
         this.setState({resultsDisplay: 'none'}); //hides SearchResults component
@@ -153,6 +154,7 @@ class App extends React.Component {
         return (
             <div className="ui container">
                 <SearchBar onSubmit={this.onSubmit} display={this.state.resultsDisplay} />
+                <SearchResults2 />
                 <SearchResults 
                     image={this.state.imageUrl} 
                     personArray={this.state.personArray} 
