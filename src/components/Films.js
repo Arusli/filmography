@@ -54,23 +54,6 @@ class Films extends React.Component {
                 )
             }
         } else if (element.media_type !== 'movie') {
-            // if (!element.poster_path && element.first_air_date) {
-            //     return (
-            //         <div className="column" key={element.id}>
-            //             <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            //                 <h5>{element.name} ({element.first_air_date.substr(0,4)})</h5>
-            //             </div>
-            //         </div>
-            //     )
-            // } else if (!element.poster_path && !element.first_air_date) {
-            //     return (
-            //         <div className="column" key={element.id}>
-            //             <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            //                 <h5>{element.name}</h5>
-            //             </div>
-            //         </div>
-            //     )
-            // } else 
             if (element.poster_path && element.first_air_date) {
                 return (
                     <div className="column" key={element.id}>
@@ -94,10 +77,7 @@ class Films extends React.Component {
             
     }
 
-
-
     render() {        
-        console.log(this.props.filmArray);
 
         if (this.props.filmArray.length > 0) {
             return (
