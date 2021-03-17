@@ -8,7 +8,7 @@ import axios from 'axios';
 const key = 'b48c4b54c6c63147c8e82f9fe931740c';
 const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
-const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
+const blankProfilePhoto = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
 const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
 // link: https://developers.themoviedb.org/3/search/search-movies
 
@@ -21,7 +21,7 @@ class App extends React.Component {
         response: null,
         actorId: null,
         searchTerm: '',
-        personResults: [],
+        searchResults: [],
         personArray: [],
         imageUrl: '',
         imageUrlSmall: '',
@@ -43,21 +43,22 @@ class App extends React.Component {
             } 
         })
 
+
         this.setState({
-            filmArray: [],
-            response: response.data, 
-            personResults: response.data.results,
-            resultsDisplay: 'inline',
+            filmArray: [], //clears film array for previous search
+            response: response.data, //data contains all the results for a search i.e. smith
+            searchResults: response.data.results,
+            resultsDisplay: 'inline', //allows toggling between display inline and none, allowing hiding of component
             searchTerm: term.toUpperCase()
         });
 
 
-        this.state.personResults.forEach(
+        this.state.searchResults.forEach(
             (e) => {
                 personArray.push({name: e.name, id: e.id, profile_path: e.profile_path});
             });
 
-        this.setState({personArray: personArray});
+        this.setState({personArray: personArray}); //array of objects of data for each search result
 
     }; //end onSubmit
 
@@ -70,8 +71,6 @@ class App extends React.Component {
             }
         });
 
-        console.log(imageResponse.data);
-
         if (imageResponse.data.profiles.length > 0) {
             this.setState({
                 imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
@@ -80,16 +79,30 @@ class App extends React.Component {
   
         } else {
             this.setState({
-                imageUrl: blankProfile,
-                imageUrlSmall: blankProfile
+                imageUrl: blankProfilePhoto,
+                imageUrlSmall: blankProfilePhoto
             });
         };
     }
-        
 //end: creates default actor image for use in imageless films //
 
+    removeDuplicatesAndSort(array) {
+        const mappedArray = array.map( (item) => {
+            return item.id;
+        })
 
-    getCredits = async () => {
+        const filteredArray = array.filter( (item, index) => {
+           return mappedArray.indexOf(mappedArray[index]) === array.indexOf(item);
+         })
+        
+        const sortedArray = filteredArray.sort( (a,b) => {
+            return b.popularity - a.popularity;
+        })
+
+        return sortedArray;
+    }
+
+    getCreditsAndBio = async () => {
         const response2 = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/combined_credits`, {
             params: {
                 api_key: key
@@ -101,14 +114,10 @@ class App extends React.Component {
                 api_key: key
             }
         })
-        
-        //this array SHOULD BE SORTED BY POPULARITY/RELEASE DATE IF POSSIBLE
-        const array = response2.data.cast.sort( (a,b) => {
-            return b.popularity - a.popularity;
-        })
+
+        const array = this.removeDuplicatesAndSort(response2.data.cast);
+
         this.setState({filmArray: array}); //movies/tv shows in which this person was in the CAST!
-        console.log(array);
-    
         
         if (response3.data.biography) {
             this.setState({
@@ -123,30 +132,21 @@ class App extends React.Component {
                 actorName: response3.data.name
             });
         }
-      
-        console.log(response2.data);
-        console.log(response3.data);
-        console.log(this.state.profileUrl)
     }
 
     changeFilms() {
-        this.getCredits();
+        this.getCreditsAndBio();
         this.changeDefaultImage();
     }
    
-    logger() {
-        console.log('logger!');
-    }
 
     //pass as prop
     onClick = async (event) => {
         await this.setState({actorId: event.currentTarget.id});
         await this.setState({filmArray: []});
         this.changeFilms();
-        this.setState({resultsDisplay: 'none'});
-        console.log(this.state.resultsDisplay);
+        this.setState({resultsDisplay: 'none'}); //hides SearchResults component
     };
- 
  
 
     render() {

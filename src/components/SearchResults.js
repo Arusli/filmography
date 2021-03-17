@@ -5,20 +5,14 @@ const blankProfile = 'https://st3.depositphotos.com/4111759/13425/v/600/depositp
 class Results extends React.Component {
 
     state = {hello: 'hello'}
-
-    //should change this.state.personId, which will be used to change the Films display.
-    //use callback to send data from this onclick to App.js (with props)
-    // onClick = (e) => {
-    //     this.setState({personId: e.currentTarget.id});
-    // }
-
+    //adjust state here with onclick. pass this state to app.js with a callback prop, e.g. this.props.adjustState(this.state.state)
 
 //BIG QUESTION: Is there a way to pass the e.id below in another way other than assigning it to the id of the div??
 
    mapArray(e) {
        if (e.profile_path) {
             return (
-                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} > 
+                <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} key={e.id} > 
                     <div className="ui center aligned segment">
                         <div><img className="ui centered image" src={imageBaseUrlSmall + e.profile_path} /></div>
                         <div>{e.name}</div>
@@ -27,7 +21,7 @@ class Results extends React.Component {
             )
        } else {
            return (
-               <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id}>
+               <div className="column" onClick={this.props.click} style={{cursor:'pointer'}} id={e.id} key={e.id} >
                     <div className="ui center aligned segment">
                         <div><img className="ui centered image" src={blankProfile} style={{width: 150, height: 225}} /></div>
                         <div>{e.name}</div>

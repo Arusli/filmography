@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        if (this.state.initial) {
+        if (this.state.initial) { //for the very first search, sets the searchbar in the middle of the page.
             return (
                 <div>
                     <h1 className="ui basic segment center aligned" style={{color: "purple"}}>FILMOGRAPHY FINDER</h1>
