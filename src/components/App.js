@@ -125,7 +125,6 @@ class App extends React.Component {
                 actorBio: response3.data.biography,
                 actorName: response3.data.name,
                 profileUrl: imageBaseUrlLarge + response3.data.profile_path,
-                actorName: response3.data.name
                 });
         } else {
             this.setState({
@@ -142,26 +141,36 @@ class App extends React.Component {
    
 
     //pass as prop
-    onClick = async (event) => {
-        await this.setState({actorId: event.currentTarget.dataset.actorid});
+    click = async () => {
         await this.setState({filmArray: []});
         this.changeFilms();
         this.setState({resultsDisplay: 'none'}); //hides SearchResults component
     };
  
+    //this was the key
+    matchState = (props) => {
+        this.setState({
+            actorId: props.actorId,
+            actorBio: props.actorBio,
+            actorName: props.actorName,
+            actorImage: props.actorImage,
+            profileUrl: props.profileUrl,
+            filmArray: props.filmArray
+        })
+    }
 
     render() {
         return (
             <div className="ui container">
                 <SearchBar onSubmit={this.onSubmit} display={this.state.resultsDisplay} />
-                <SearchResults2 />
-                <SearchResults 
+                <SearchResults2 
                     image={this.state.imageUrl} 
                     personArray={this.state.personArray} 
-                    click={this.onClick} 
                     display={this.state.resultsDisplay} 
                     searchTerm={this.state.searchTerm}
-                    />
+                    matchState={this.matchState}
+                    click={this.click}
+                />
                 <Films 
                     filmArray={this.state.filmArray} 
                     actorImage={this.state.imageUrlSmall} 

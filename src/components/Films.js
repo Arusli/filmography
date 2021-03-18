@@ -4,11 +4,6 @@ const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
 class Films extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.hello = 'hello';
-    }
-
     //why isn't this definited inside mapImages but it is inside render?
     mapImages(element) {
         if (element.media_type === 'movie') {
