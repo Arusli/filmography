@@ -26,7 +26,6 @@ class App extends React.Component {
         actorBio: '',
         actorName: '',
         profileUrl: '',
-        profileUrl2: '',
         resultsDisplay: 'none',
         blank: blank
     };
@@ -99,7 +98,6 @@ class App extends React.Component {
             this.setState({
                 actorBio: response3.data.biography,
                 actorName: response3.data.name,
-                profileUrl: imageBaseUrlLarge + response3.data.profile_path,
                 });
         } else {
             this.setState({
@@ -128,7 +126,7 @@ class App extends React.Component {
             actorBio: props.actorBio,
             actorName: props.actorName,
             actorImage: props.actorImage,
-            profileUrl2: props.profilePathLarge,
+            profileUrl: props.profilePathLarge,
             filmArray: props.filmArray
         })
     }
@@ -138,7 +136,6 @@ class App extends React.Component {
             <div className="ui container">
                 <SearchBar onSubmit={this.onSubmit} display={this.state.resultsDisplay} />
                 <SearchResults2 
-                    image={this.state.imageUrl} 
                     personArray={this.state.personArray} 
                     display={this.state.resultsDisplay} 
                     searchTerm={this.state.searchTerm}
@@ -147,7 +144,7 @@ class App extends React.Component {
                 />
                 <Films 
                     filmArray={this.state.filmArray} 
-                    actorImage={this.state.profileUrl2} 
+                    actorImage={this.state.profileUrl} 
                     actorBio={this.state.actorBio} 
                     actorName={this.state.actorName}
                     blank={this.state.blank}

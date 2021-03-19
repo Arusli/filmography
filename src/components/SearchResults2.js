@@ -26,7 +26,8 @@ class SearchResults2 extends React.Component {
                 <Actor 
                     actorId={e.id}
                     actorName={e.name}
-                    profilePath={blankProfile}
+                    profilePathSmall={blankProfile}
+                    profilePathLarge={blankProfile}
                     matchState={this.props.matchState}
                     click={this.props.click}
                     key={e.id}
