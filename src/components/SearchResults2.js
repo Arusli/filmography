@@ -39,8 +39,13 @@ class SearchResults2 extends React.Component {
 
     render() {
         return (
-            <div className="ui stackable four column grid" style={{display: this.props.display}}>
-                {this.props.personArray.map(this.mapArray, this)}
+            <div style={{display: this.props.display}}>
+                <div style={{margin: "20px"}} className="ui container">
+                    <h5>Results for: {this.props.searchTerm}</h5>
+                </div>
+                <div className="ui stackable four column grid">
+                    {this.props.personArray.map(this.mapArray, this)}
+                </div>
             </div>
         )  
     }

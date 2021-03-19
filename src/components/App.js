@@ -25,7 +25,8 @@ class App extends React.Component {
         filmArray: [],
         actorBio: '',
         actorName: '',
-        profileUrl: '',
+        profileUrlLarge: '',
+        profileUrlSmall: '',
         resultsDisplay: 'none',
         blank: blank
     };
@@ -126,7 +127,8 @@ class App extends React.Component {
             actorBio: props.actorBio,
             actorName: props.actorName,
             actorImage: props.actorImage,
-            profileUrl: props.profilePathLarge,
+            profileUrlLarge: props.profilePathLarge,
+            profileUrlSmall: props.profilePathSmall,
             filmArray: props.filmArray
         })
     }
@@ -144,7 +146,7 @@ class App extends React.Component {
                 />
                 <Films 
                     filmArray={this.state.filmArray} 
-                    actorImage={this.state.profileUrl} 
+                    profileUrlLarge={this.state.profileUrlLarge} 
                     actorBio={this.state.actorBio} 
                     actorName={this.state.actorName}
                     blank={this.state.blank}

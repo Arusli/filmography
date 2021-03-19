@@ -59,7 +59,7 @@ class Films extends React.Component {
                         <div className="ui stackable grid">
                             <div className="four wide column">
                                 <div className="ui center aligned container">
-                                    <img className="ui centered image" src={this.props.actorImage} alt={this.props.actorName} />
+                                    <img className="ui centered image" src={this.props.profileUrlLarge} alt={this.props.actorName} />
                                     <h3>{this.props.actorName}</h3>    
                                 </div>
                             </div>
