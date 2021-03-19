@@ -1,34 +1,12 @@
 import React from 'react';
 
-const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
+// const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
 class Films extends React.Component {
 
-    //why isn't this definited inside mapImages but it is inside render?
+    //why isn't 'this' definied inside mapImages but it is inside render?
     mapImages(element) {
         if (element.media_type === 'movie') {
-            // if (!element.poster_path && element.release_date) {
-            //     return (
-            //         <div className="column" key={element.id}>
-            //             {/* <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px"}}>
-            //                 <img className="ui centered small image" src={this.props.blank} alt={element.title} /> 
-            //                 <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
-            //             </div> */}
-            //              <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            //                 {/* <img className="ui centered small image" src={this.props.blank} alt={element.title} />  */}
-            //                 <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
-            //             </div>
-            //         </div>
-            //     )
-            // } else if (!element.poster_path && !element.release_date) {
-            //     return (
-            //         <div className="column" key={element.id}>
-            //             <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            //                 <h5>{element.title}</h5>
-            //             </div>
-            //         </div>
-            //     )
-            // } else 
             if (element.poster_path && element.release_date) {
                 return (
                     <div className="column" key={element.id}>
@@ -81,7 +59,7 @@ class Films extends React.Component {
                         <div className="ui stackable grid">
                             <div className="four wide column">
                                 <div className="ui center aligned container">
-                                    <img className="ui centered image" src={this.props.actorImage} />
+                                    <img className="ui centered image" src={this.props.actorImage} alt={this.props.actorName} />
                                     <h3>{this.props.name}</h3>    
                                 </div>
                             </div>
@@ -106,5 +84,29 @@ class Films extends React.Component {
     }
 
 }
+
+//old code, could be useful later
+    // if (!element.poster_path && element.release_date) {
+            //     return (
+            //         <div className="column" key={element.id}>
+            //             {/* <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px"}}>
+            //                 <img className="ui centered small image" src={this.props.blank} alt={element.title} /> 
+            //                 <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+            //             </div> */}
+            //              <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            //                 {/* <img className="ui centered small image" src={this.props.blank} alt={element.title} />  */}
+            //                 <h5>{element.title} ({element.release_date.substr(0,4)})</h5>
+            //             </div>
+            //         </div>
+            //     )
+            // } else if (!element.poster_path && !element.release_date) {
+            //     return (
+            //         <div className="column" key={element.id}>
+            //             <div className="ui center aligned segment" style={{height: "100%", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            //                 <h5>{element.title}</h5>
+            //             </div>
+            //         </div>
+            //     )
+            // } else 
 
 export default Films;

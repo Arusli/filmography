@@ -1,21 +1,19 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
 import SearchResults2 from './SearchResults2';
 import Films from './Films';
 import axios from 'axios';
 
-
-const key = 'b48c4b54c6c63147c8e82f9fe931740c';
-const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
-const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
-const blankProfilePhoto = 'https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg'
-const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
 // link: https://developers.themoviedb.org/3/search/search-movies
-
 //photo endpoints:
 // https://www.themoviedb.org/t/p/w150_and_h225_bestv2/
 // https://www.themoviedb.org/t/p/w600_and_h900_bestv2/65TtWF5yOHnd5O6CiZGoezaBBgl.jpg
+
+const key = 'b48c4b54c6c63147c8e82f9fe931740c';
+const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
+// const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
+const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
+
 class App extends React.Component {
 
     state = {
@@ -24,17 +22,16 @@ class App extends React.Component {
         searchTerm: '',
         searchResults: [],
         personArray: [],
-        imageUrl: '',
-        imageUrlSmall: '',
         filmArray: [],
         actorBio: '',
-        resultsDisplay: 'none',
         actorName: '',
         profileUrl: '',
         profileUrl2: '',
+        resultsDisplay: 'none',
         blank: blank
     };
 
+    //makes get requests for results of searching an actor
     onSubmit = async (term) => {
         const personArray = [];
         const response = await axios.get('https://api.themoviedb.org/3/search/person', {
@@ -46,46 +43,24 @@ class App extends React.Component {
 
 
         this.setState({
-            filmArray: [], //clears film array for previous search
+            filmArray: [], //clears film array of previous search
             response: response.data, //data contains all the results for a search i.e. smith
             searchResults: response.data.results,
-            resultsDisplay: 'inline', //allows toggling between display inline and none, allowing hiding of component
+            resultsDisplay: 'inline', //reveals SearchResults component. Switch to none when hiding component.
             searchTerm: term.toUpperCase()
         });
 
 
+        //creates array of data objects, object per result
         this.state.searchResults.forEach(
             (e) => {
                 personArray.push({name: e.name, id: e.id, profile_path: e.profile_path});
             });
 
-        this.setState({personArray: personArray}); //array of objects of data for each search result
+        this.setState({personArray: personArray}); 
 
     }; //end onSubmit
 
-
-//creates default actor image for use in imageless films //
-    changeDefaultImage = async () => {
-        const imageResponse = await axios.get(`https://api.themoviedb.org/3/person/${this.state.actorId}/images`, {
-            params: {
-                api_key: key,
-            }
-        });
-
-        if (imageResponse.data.profiles.length > 0) {
-            this.setState({
-                imageUrl: imageBaseUrlLarge + imageResponse.data.profiles[0].file_path,
-                imageUrlSmall: imageBaseUrlSmall + imageResponse.data.profiles[0].file_path
-            });
-  
-        } else {
-            this.setState({
-                imageUrl: blankProfilePhoto,
-                imageUrlSmall: blankProfilePhoto
-            });
-        };
-    }
-//end: creates default actor image for use in imageless films //
 
     removeDuplicatesAndSort(array) {
         const mappedArray = array.map( (item) => {
@@ -136,25 +111,24 @@ class App extends React.Component {
 
     changeFilms() {
         this.getCreditsAndBio();
-        this.changeDefaultImage();
     }
    
 
-    //pass as prop
+    //pass as prop to SearchResults
     click = async () => {
         await this.setState({filmArray: []});
         this.changeFilms();
         this.setState({resultsDisplay: 'none'}); //hides SearchResults component
     };
  
-    //this was the key
+    //this was the key to pass props up from child to parent component
     matchState = (props) => {
         this.setState({
             actorId: props.actorId,
             actorBio: props.actorBio,
             actorName: props.actorName,
             actorImage: props.actorImage,
-            profileUrl: props.profileUrl,
+            profileUrl2: props.profilePathLarge,
             filmArray: props.filmArray
         })
     }
@@ -173,9 +147,9 @@ class App extends React.Component {
                 />
                 <Films 
                     filmArray={this.state.filmArray} 
-                    actorImage={this.state.imageUrlSmall} 
+                    actorImage={this.state.profileUrl2} 
                     actorBio={this.state.actorBio} 
-                    name={this.state.actorName}
+                    actorName={this.state.actorName}
                     blank={this.state.blank}
                 />
             </div>
