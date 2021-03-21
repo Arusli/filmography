@@ -12,7 +12,7 @@ import axios from 'axios';
 const key = 'b48c4b54c6c63147c8e82f9fe931740c';
 const imageBaseUrlLarge = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 // const imageBaseUrlSmall = 'https://www.themoviedb.org/t/p/w150_and_h225_bestv2';
-const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
+// const blank = 'https://cdn-d8.nypl.org/s3fs-public/styles/hero_header_focal_point_320x400/public/2020-07/background-hero-image2_3.png?h=ef32067e&itok=2c3EYYaK'
 
 class App extends React.Component {
 
@@ -27,8 +27,7 @@ class App extends React.Component {
         actorName: '',
         profileUrlLarge: '',
         profileUrlSmall: '',
-        resultsDisplay: 'none',
-        blank: blank
+        resultsDisplay: 'none'
     };
 
     //makes get requests for results of searching an actor
@@ -149,7 +148,6 @@ class App extends React.Component {
                     profileUrlLarge={this.state.profileUrlLarge} 
                     actorBio={this.state.actorBio} 
                     actorName={this.state.actorName}
-                    blank={this.state.blank}
                 />
             </div>
             
