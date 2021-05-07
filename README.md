@@ -1,3 +1,11 @@
+How to Deploy/update Deploy to GH Pages:
+1. You can add, commit, and push changes as normal.
+2. When you want to publish the newest version to gh pages, do the following:
+3. npm run deploy
+4. git push -u origin master
+5. then the newest version should be published and deployed on gh pages.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

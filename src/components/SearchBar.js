@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
             return (
                 <div className="ui container" style={{marginBottom: "50px"}}>
                     <div className="ui center aligned container">
-                        <h1 className="ui basic segment center aligned" style={{color: "cornflowerblue"}}>Filmography Finder</h1>  
+                        <h1 className="ui basic segment center aligned" style={{color: "cornflowerblue"}}>FILMOGRAPHY FINDER</h1>  
                         <form className="ui center aligned huge input focus" onSubmit={this.onSubmit}> 
                             <input type="text" placeholder="ex. matt damon..." onChange={this.onInputChange} value={this.state.searchterm} />
                         </form>
